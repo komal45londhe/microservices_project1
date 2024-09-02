@@ -12,13 +12,13 @@
       when: container_check.stdout_lines|length > 0
 
     - name: Check if the image exists
-      shell: docker images -q cloudtraineer/project_image
+      shell: docker images -q komal45londhe/project_image
       register: image_check
       ignore_errors: true
 
     - name: Remove the image if it exists
       docker_image:
-        name: cloudtraineer/project_image
+        name: komal45londhe/project_image
         state: absent
       when: image_check.stdout_lines|length > 0
 
@@ -32,7 +32,7 @@
     - name: Create docker container
       docker_container:
         name: my_container
-        image: cloudtraineer/project_image
+        image: komal45londhe/project_image
         ports:
           - "8090:8080"
-      when: "'cloudtraineer/project_image' not in image_check.stdout_lines"
+      when: "'komal45londhe/project_image' not in image_check.stdout_lines"
